@@ -66,10 +66,10 @@ export function Footer() {
           <div>
             <Link href="/" className="inline-block mb-4">
               <Image
-                src="/logo.png"
+                src="/NEWLOGO-WHITE-TRANSPARENT-BG.png"
                 alt="Radio Prophets Events"
-                width={120}
-                height={120}
+                width={200}
+                height={200}
                 className="h-16 w-auto"
               />
             </Link>
@@ -83,15 +83,9 @@ export function Footer() {
           <div>
             <h4 className="font-medium uppercase tracking-wider text-sm mb-4">Quick Links</h4>
             <nav className="flex flex-col gap-2">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="text-primary-foreground/70 hover:text-primary-foreground transition-colors text-sm"
-                >
-                  {link.label}
-                </Link>
-              ))}
+              <Link href="/" className="text-primary-foreground/70 hover:text-primary-foreground transition-colors text-sm">Home</Link>
+              <Link href="/gallery" className="text-primary-foreground/70 hover:text-primary-foreground transition-colors text-sm">Gallery</Link>
+              <Link href="/contact" className="text-primary-foreground/70 hover:text-primary-foreground transition-colors text-sm">Contact Us</Link>
             </nav>
           </div>
 

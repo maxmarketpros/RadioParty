@@ -76,17 +76,16 @@ export function Header() {
         }`}
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex h-32 items-center justify-between gap-4">
+        <div className="flex h-24 items-center justify-between gap-4">
           {/* Left Section: Logo + Socials */}
           <div className="flex items-center gap-6 lg:gap-8">
             <Link href="/" className="flex-shrink-0">
               <Image
-                src="/NEWLOGO-WHITE-TRANSPARENT-BG.png"
+                src={shouldShowSolid ? "/NEWLOGO-BLACK-TRANSPARENT-BG.png" : "/NEWLOGO-WHITE-TRANSPARENT-BG.png"}
                 alt="Radio Prophets Events"
                 width={320}
                 height={320}
-                className={`h-24 w-auto md:h-28 transition-all duration-300 ${shouldShowSolid ? "brightness-0 opacity-70" : ""
-                  }`}
+                className="h-24 w-auto md:h-28 transition-all duration-300"
                 priority
               />
             </Link>
@@ -113,22 +112,8 @@ export function Header() {
 
           {/* Right Section: Desktop Nav + CTA */}
           <div className="hidden md:flex items-center gap-3 lg:gap-6 ml-auto flex-shrink-0">
-            <nav className="flex items-center gap-3 lg:gap-6">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className={`text-xs lg:text-sm font-medium transition-colors tracking-wide uppercase whitespace-nowrap ${shouldShowSolid
-                    ? "text-foreground/80 hover:text-foreground"
-                    : "text-white hover:text-white/90"
-                    }`}
-                >
-                  {link.label}
-                </Link>
-              ))}
-            </nav>
             <Button asChild className="font-medium tracking-wide text-xs lg:text-sm">
-              <Link href="mailto:radioprophetsevents@gmail.com">Contact Us</Link>
+              <Link href="/contact">Contact Us</Link>
             </Button>
           </div>
 
@@ -149,17 +134,7 @@ export function Header() {
       {isMobileMenuOpen && (
         <div className="md:hidden bg-background border-t border-border">
           <nav className="flex flex-col px-4 py-4 gap-4">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="text-base font-medium text-foreground/80 hover:text-foreground transition-colors py-2"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                {link.label}
-              </Link>
-            ))}
-            <div className="flex items-center gap-4 pt-4 border-t border-border">
+            <div className="flex items-center gap-4 py-2 border-b border-border">
               {socialLinks.map((social) => (
                 <Link
                   key={social.label}
@@ -168,6 +143,7 @@ export function Header() {
                   rel="noopener noreferrer"
                   className="text-foreground/70 hover:text-foreground transition-colors"
                   aria-label={social.label}
+                  onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {social.icon}
                 </Link>
@@ -180,7 +156,7 @@ export function Header() {
               </a>
             </div>
             <Button asChild className="mt-2 w-full">
-              <Link href="mailto:radioprophetsevents@gmail.com">Contact Us</Link>
+              <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)}>Contact Us</Link>
             </Button>
           </nav>
         </div>

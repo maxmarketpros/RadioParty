@@ -59,7 +59,7 @@ export function HeroSection() {
             className="object-cover"
             priority={index === 0}
           />
-          <div className="absolute inset-0 bg-foreground/40" />
+          <div className="absolute inset-0 bg-foreground/50" />
         </div>
       ))}
 
@@ -81,7 +81,7 @@ export function HeroSection() {
             size="lg"
             className="bg-white text-foreground hover:bg-white/90 font-medium tracking-wide px-8"
           >
-            <Link href="#contact">Get a Quote</Link>
+            <Link href="/contact">Get a Quote</Link>
           </Button>
           <Button
             asChild
