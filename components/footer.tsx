@@ -84,6 +84,11 @@ export function Footer() {
             <h4 className="font-medium uppercase tracking-wider text-sm mb-4">Quick Links</h4>
             <nav className="flex flex-col gap-2">
               <Link href="/" className="text-primary-foreground/70 hover:text-primary-foreground transition-colors text-sm">Home</Link>
+              <Link href="/wedding-band" className="text-primary-foreground/70 hover:text-primary-foreground transition-colors text-sm">Wedding Band</Link>
+              <Link href="/wedding-dj" className="text-primary-foreground/70 hover:text-primary-foreground transition-colors text-sm">Wedding DJ & Sax</Link>
+              <Link href="/events-band" className="text-primary-foreground/70 hover:text-primary-foreground transition-colors text-sm">Events & Party Band</Link>
+              <Link href="/live-dj" className="text-primary-foreground/70 hover:text-primary-foreground transition-colors text-sm">Live DJ Service</Link>
+              <Link href="/dance-band-event-dj" className="text-primary-foreground/70 hover:text-primary-foreground transition-colors text-sm">Dance Band & Event DJ</Link>
               <Link href="/gallery" className="text-primary-foreground/70 hover:text-primary-foreground transition-colors text-sm">Gallery</Link>
               <Link href="/contact" className="text-primary-foreground/70 hover:text-primary-foreground transition-colors text-sm">Contact Us</Link>
             </nav>
