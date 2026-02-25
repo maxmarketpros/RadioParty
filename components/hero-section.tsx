@@ -44,7 +44,7 @@ export function HeroSection() {
   };
 
   return (
-    <section className="relative h-screen min-h-[600px] w-full overflow-hidden">
+    <section className="relative min-h-[750px] lg:min-h-[600px] h-[100dvh] w-full overflow-hidden">
       {/* Background Slideshow */}
       {heroImages.map((image, index) => (
         <div
@@ -64,7 +64,7 @@ export function HeroSection() {
       ))}
 
       {/* Content */}
-      <div className="relative z-10 flex h-full flex-col items-center justify-center px-4 text-center text-white">
+      <div className="relative z-10 flex h-full flex-col items-center justify-center px-4 pt-16 lg:pt-0 text-center text-white">
         <p className="mb-4 text-sm font-medium uppercase tracking-[0.3em] text-white/90">
           Santa Barbara&apos;s Premier Wedding Band
         </p>
@@ -93,15 +93,26 @@ export function HeroSection() {
           </Button>
         </div>
 
-        {/* Awards Badge */}
-        <div className="mt-12 flex items-center gap-6 opacity-90">
-          <Image
-            src="/AVARDS-IMAGE.png"
-            alt="WeddingWire Couples' Choice Awards 2018 and The Knot Best of Weddings 2022"
-            width={500}
-            height={150}
-            className="h-32 w-auto"
-          />
+        {/* Awards Badges */}
+        <div className="mt-8 md:mt-12 flex justify-center items-center gap-4 md:gap-6 opacity-90">
+          <Link href="https://www.theknot.com/marketplace/radio-prophets-santa-barbara-ca-2047418" target="_blank" rel="noopener noreferrer">
+            <Image
+              src="/AWARD1.png"
+              alt="The Knot Best of Weddings"
+              width={250}
+              height={150}
+              className="h-24 md:h-32 w-auto hover:opacity-80 transition-opacity"
+            />
+          </Link>
+          <Link href="https://www.weddingwire.com/biz/radio-prophets-santa-barbara/d9ecce3deee27ac3.html" target="_blank" rel="noopener noreferrer">
+            <Image
+              src="/award2.png"
+              alt="WeddingWire Couples' Choice Awards"
+              width={250}
+              height={150}
+              className="h-24 md:h-32 w-auto hover:opacity-80 transition-opacity"
+            />
+          </Link>
         </div>
       </div>
 

@@ -4,6 +4,7 @@ import React from "react"
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -109,15 +110,26 @@ ${formData.message}`;
               </div>
             </div>
 
-            {/* Social proof image */}
-            <div className="mt-8">
-              <Image
-                src="https://images.squarespace-cdn.com/content/v1/6232e5faff349d7ad50b41cd/4e25dc13-4154-4ba7-b575-a385750e63de/IMG_3100.jpg"
-                alt="Award badges"
-                width={180}
-                height={80}
-                className="h-16 w-auto"
-              />
+            {/* Social proof images */}
+            <div className="mt-8 flex flex-wrap gap-4">
+              <Link href="https://www.theknot.com/marketplace/radio-prophets-santa-barbara-ca-2047418" target="_blank" rel="noopener noreferrer">
+                <Image
+                  src="/AWARD1.png"
+                  alt="The Knot Best of Weddings"
+                  width={90}
+                  height={80}
+                  className="h-16 w-auto hover:opacity-80 transition-opacity"
+                />
+              </Link>
+              <Link href="https://www.weddingwire.com/biz/radio-prophets-santa-barbara/d9ecce3deee27ac3.html" target="_blank" rel="noopener noreferrer">
+                <Image
+                  src="/award2.png"
+                  alt="WeddingWire Couples' Choice Awards"
+                  width={90}
+                  height={80}
+                  className="h-16 w-auto hover:opacity-80 transition-opacity"
+                />
+              </Link>
             </div>
           </div>
 

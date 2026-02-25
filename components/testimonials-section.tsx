@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { ChevronLeft, ChevronRight, Star } from "lucide-react";
 
 const testimonials = [
@@ -130,14 +131,25 @@ export function TestimonialsSection() {
         </div>
 
         {/* Awards & Review Screenshots */}
-        <div className="col-span-2 md:col-span-1 flex justify-center w-full md:col-start-2">
-          <Image
-            src="/AVARDS-IMAGE.png"
-            alt="WeddingWire Couples Choice Awards and The Knot Best of Weddings"
-            width={200}
-            height={100}
-            className="h-20 w-auto"
-          />
+        <div className="col-span-2 md:col-span-1 flex justify-center items-center gap-4 w-full md:col-start-2">
+          <Link href="https://www.theknot.com/marketplace/radio-prophets-santa-barbara-ca-2047418" target="_blank" rel="noopener noreferrer">
+            <Image
+              src="/AWARD1.png"
+              alt="The Knot Best of Weddings"
+              width={100}
+              height={100}
+              className="h-20 w-auto hover:opacity-80 transition-opacity"
+            />
+          </Link>
+          <Link href="https://www.weddingwire.com/biz/radio-prophets-santa-barbara/d9ecce3deee27ac3.html" target="_blank" rel="noopener noreferrer">
+            <Image
+              src="/award2.png"
+              alt="WeddingWire Couples' Choice Awards"
+              width={100}
+              height={100}
+              className="h-20 w-auto hover:opacity-80 transition-opacity"
+            />
+          </Link>
         </div>
       </div>
     </section>
