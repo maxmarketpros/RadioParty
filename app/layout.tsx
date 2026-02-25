@@ -71,9 +71,8 @@ export const metadata: Metadata = {
     images: ["https://images.squarespace-cdn.com/content/v1/6232e5faff349d7ad50b41cd/465faf3b-8229-4550-b8c4-27401872984e/C85C1B4D-53A7-426D-8801-C613AD69D4FC.jpg?format=1500w"],
   },
   icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon-16x16.png",
-    apple: "/apple-touch-icon.png",
+    icon: "/logo.png",
+    apple: "/logo.png",
   },
   robots: {
     index: true,
