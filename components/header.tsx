@@ -4,17 +4,8 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Menu, X, Phone, ChevronRight } from "lucide-react";
+import { Menu, X, Phone, ChevronRight, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu";
 
 const socialLinks = [
   {
@@ -58,6 +49,7 @@ const socialLinks = [
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isServicesOpen, setIsServicesOpen] = useState(false);
   const pathname = usePathname();
   const isHome = pathname === "/";
 
@@ -113,18 +105,26 @@ export function Header() {
 
           {/* Middle Section: Main Navigation (Centered) */}
           <div className="hidden md:flex flex-1 items-center justify-center">
-            <NavigationMenu>
-              <NavigationMenuList className="gap-1 lg:gap-2">
-                {/* Services Dropdown */}
-                <NavigationMenuItem>
-                  <NavigationMenuTrigger
-                    className={`bg-transparent hover:bg-black/5 data-[state=open]:bg-black/5 focus:bg-transparent ${shouldShowSolid ? "text-foreground" : "text-white hover:text-white/80 data-[state=open]:text-white focus:text-white"
-                      }`}
-                  >
-                    Services
-                  </NavigationMenuTrigger>
-                  <NavigationMenuContent>
-                    <div className="grid w-[400px] gap-4 p-5 md:w-[500px] md:grid-cols-2 lg:w-[600px] bg-white text-black shadow-xl border border-slate-200 rounded-md">
+            <nav className="flex items-center justify-center gap-1 lg:gap-2">
+              {/* Services Dropdown */}
+              <div
+                className="relative group"
+                onMouseEnter={() => setIsServicesOpen(true)}
+                onMouseLeave={() => setIsServicesOpen(false)}
+              >
+                <button
+                  type="button"
+                  className={`inline-flex h-9 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-all duration-200 hover:bg-black/5 focus:outline-none ${isServicesOpen ? "bg-black/5" : ""
+                    } ${shouldShowSolid ? "text-foreground" : "text-white hover:text-white/80"
+                    }`}
+                >
+                  Services
+                  <ChevronDown className={`ml-1 h-3 w-3 transition-transform duration-300 ${isServicesOpen ? "rotate-180" : ""}`} />
+                </button>
+
+                {isServicesOpen && (
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 z-[60]">
+                    <div className="grid w-[400px] gap-4 p-5 md:w-[500px] md:grid-cols-2 lg:w-[600px] bg-white text-black shadow-2xl border border-slate-200 rounded-md animate-in fade-in zoom-in duration-200 origin-top">
                       <div className="space-y-3">
                         <h4 className="font-medium leading-none text-gray-500 uppercase tracking-wider text-xs mb-2">DJs & Hybrids</h4>
                         <Link href="/wedding-dj" className="block select-none space-y-1 rounded-sm p-3 leading-none no-underline outline-none transition-colors hover:bg-slate-100 focus:bg-slate-100 group">
@@ -146,47 +146,43 @@ export function Header() {
                           <div className="text-sm font-medium leading-none group-hover:text-primary font-serif transition-colors text-black">Planning & Coordination</div>
                           <p className="line-clamp-2 text-xs leading-snug text-gray-600">Logistics expertly handled top to bottom.</p>
                         </Link>
-                        <div className="mt-4 pt-4 border-t border-slate-200">
-                          <Link href="/dance-band-event-dj" className="inline-flex items-center text-xs font-semibold uppercase tracking-wider text-primary hover:opacity-80 transition-opacity">
-                            Compare All Service Tiers <ChevronRight className="ml-1 w-3 h-3" />
-                          </Link>
-                        </div>
+                        <Link href="/dance-band-event-dj" className="block select-none space-y-1 rounded-sm p-3 leading-none no-underline outline-none transition-colors hover:bg-slate-100 focus:bg-slate-100 group">
+                          <div className="text-sm font-medium leading-none group-hover:text-primary font-serif transition-colors text-black">Dance Band & Event DJ</div>
+                          <p className="line-clamp-2 text-xs leading-snug text-gray-600">The ultimate live band and DJ fusion for your dance floor.</p>
+                        </Link>
                       </div>
                     </div>
-                  </NavigationMenuContent>
-                </NavigationMenuItem>
+                  </div>
+                )}
+              </div>
 
-                {/* Packages Link -> Points to /wedding-band */}
-                <NavigationMenuItem>
-                  <Link href="/wedding-band" legacyBehavior passHref>
-                    <NavigationMenuLink className={`${navigationMenuTriggerStyle()} bg-transparent hover:bg-black/5 focus:bg-transparent ${shouldShowSolid ? "text-foreground" : "text-white hover:text-white/80 focus:text-white"
-                      }`}>
-                      Packages
-                    </NavigationMenuLink>
-                  </Link>
-                </NavigationMenuItem>
+              {/* Packages Link */}
+              <Link
+                href="/wedding-band"
+                className={`inline-flex h-9 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-black/5 ${shouldShowSolid ? "text-foreground" : "text-white hover:text-white/80"
+                  }`}
+              >
+                Packages
+              </Link>
 
-                {/* Videos Link */}
-                <NavigationMenuItem>
-                  <Link href="/videos" legacyBehavior passHref>
-                    <NavigationMenuLink className={`${navigationMenuTriggerStyle()} bg-transparent hover:bg-black/5 focus:bg-transparent ${shouldShowSolid ? "text-foreground" : "text-white hover:text-white/80 focus:text-white"
-                      }`}>
-                      Videos
-                    </NavigationMenuLink>
-                  </Link>
-                </NavigationMenuItem>
+              {/* Videos Link */}
+              <Link
+                href="/videos"
+                className={`inline-flex h-9 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-black/5 ${shouldShowSolid ? "text-foreground" : "text-white hover:text-white/80"
+                  }`}
+              >
+                Videos
+              </Link>
 
-                {/* Photo Gallery Link */}
-                <NavigationMenuItem>
-                  <Link href="/gallery" legacyBehavior passHref>
-                    <NavigationMenuLink className={`${navigationMenuTriggerStyle()} bg-transparent hover:bg-black/5 focus:bg-transparent ${shouldShowSolid ? "text-foreground" : "text-white hover:text-white/80 focus:text-white"
-                      }`}>
-                      Photo Gallery
-                    </NavigationMenuLink>
-                  </Link>
-                </NavigationMenuItem>
-              </NavigationMenuList>
-            </NavigationMenu>
+              {/* Photo Gallery Link */}
+              <Link
+                href="/gallery"
+                className={`inline-flex h-9 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-black/5 ${shouldShowSolid ? "text-foreground" : "text-white hover:text-white/80"
+                  }`}
+              >
+                Photo Gallery
+              </Link>
+            </nav>
           </div>
 
           {/* Right Section: CTA Contact Button */}
@@ -221,7 +217,7 @@ export function Header() {
                 <Link href="/live-dj" onClick={() => setIsMobileMenuOpen(false)} className="text-lg font-serif">Live DJ Service</Link>
                 <Link href="/events-band" onClick={() => setIsMobileMenuOpen(false)} className="text-lg font-serif">Events & Party Band</Link>
                 <Link href="/wedding-planning" onClick={() => setIsMobileMenuOpen(false)} className="text-lg font-serif">Planning & Coordination</Link>
-                <Link href="/dance-band-event-dj" onClick={() => setIsMobileMenuOpen(false)} className="text-sm font-medium uppercase tracking-wider text-accent pt-2">Compare All Service Tiers</Link>
+                <Link href="/dance-band-event-dj" onClick={() => setIsMobileMenuOpen(false)} className="text-lg font-serif">Dance Band & Event DJ</Link>
               </div>
             </div>
 
