@@ -4,16 +4,17 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Menu, X, Phone } from "lucide-react";
+import { Menu, X, Phone, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-
-const navLinks = [
-  { href: "/#about", label: "About" },
-  { href: "/#services", label: "Services" },
-  { href: "/#testimonials", label: "Testimonials" },
-  { href: "/#gallery", label: "Gallery" },
-  { href: "/#contact", label: "Contact" },
-];
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  navigationMenuTriggerStyle,
+} from "@/components/ui/navigation-menu";
 
 const socialLinks = [
   {
@@ -72,7 +73,7 @@ export function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${shouldShowSolid ? "bg-background/95 backdrop-blur-sm shadow-sm" : "bg-transparent"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${shouldShowSolid ? "bg-background/95 backdrop-blur-sm border-b border-border/40 shadow-sm" : "bg-transparent"
         }`}
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -85,7 +86,7 @@ export function Header() {
                 alt="Radio Prophets Events"
                 width={320}
                 height={320}
-                className="h-24 w-auto md:h-28 transition-all duration-300"
+                className="h-20 w-auto md:h-24 transition-all duration-300"
                 priority
               />
             </Link>
@@ -110,8 +111,86 @@ export function Header() {
             </div>
           </div>
 
-          {/* Right Section: Desktop Nav + CTA */}
-          <div className="hidden md:flex items-center gap-3 lg:gap-6 ml-auto flex-shrink-0">
+          {/* Middle Section: Main Navigation (Centered) */}
+          <div className="hidden md:flex flex-1 items-center justify-center">
+            <NavigationMenu>
+              <NavigationMenuList className="gap-1 lg:gap-2">
+                {/* Services Dropdown */}
+                <NavigationMenuItem>
+                  <NavigationMenuTrigger
+                    className={`bg-transparent hover:bg-black/5 data-[state=open]:bg-black/5 focus:bg-transparent ${shouldShowSolid ? "text-foreground" : "text-white hover:text-white/80 data-[state=open]:text-white focus:text-white"
+                      }`}
+                  >
+                    Services
+                  </NavigationMenuTrigger>
+                  <NavigationMenuContent>
+                    <div className="grid w-[400px] gap-4 p-5 md:w-[500px] md:grid-cols-2 lg:w-[600px] bg-white text-black shadow-xl border border-slate-200 rounded-md">
+                      <div className="space-y-3">
+                        <h4 className="font-medium leading-none text-gray-500 uppercase tracking-wider text-xs mb-2">DJs & Hybrids</h4>
+                        <Link href="/wedding-dj" className="block select-none space-y-1 rounded-sm p-3 leading-none no-underline outline-none transition-colors hover:bg-slate-100 focus:bg-slate-100 group">
+                          <div className="text-sm font-medium leading-none group-hover:text-primary font-serif transition-colors text-black">Wedding DJ & Sax</div>
+                          <p className="line-clamp-2 text-xs leading-snug text-gray-600">Club mixing backed by live roaming horn.</p>
+                        </Link>
+                        <Link href="/live-dj" className="block select-none space-y-1 rounded-sm p-3 leading-none no-underline outline-none transition-colors hover:bg-slate-100 focus:bg-slate-100 group">
+                          <div className="text-sm font-medium leading-none group-hover:text-primary font-serif transition-colors text-black">Live DJ Service</div>
+                          <p className="line-clamp-2 text-xs leading-snug text-gray-600">Flawless club mixing without the cheese.</p>
+                        </Link>
+                      </div>
+                      <div className="space-y-3">
+                        <h4 className="font-medium leading-none text-gray-500 uppercase tracking-wider text-xs mb-2">Bands & Coordination</h4>
+                        <Link href="/events-band" className="block select-none space-y-1 rounded-sm p-3 leading-none no-underline outline-none transition-colors hover:bg-slate-100 focus:bg-slate-100 group">
+                          <div className="text-sm font-medium leading-none group-hover:text-primary font-serif transition-colors text-black">Events & Party Band</div>
+                          <p className="line-clamp-2 text-xs leading-snug text-gray-600">Explosive entertainment for luxury galas.</p>
+                        </Link>
+                        <Link href="/wedding-planning" className="block select-none space-y-1 rounded-sm p-3 leading-none no-underline outline-none transition-colors hover:bg-slate-100 focus:bg-slate-100 group">
+                          <div className="text-sm font-medium leading-none group-hover:text-primary font-serif transition-colors text-black">Planning & Coordination</div>
+                          <p className="line-clamp-2 text-xs leading-snug text-gray-600">Logistics expertly handled top to bottom.</p>
+                        </Link>
+                        <div className="mt-4 pt-4 border-t border-slate-200">
+                          <Link href="/dance-band-event-dj" className="inline-flex items-center text-xs font-semibold uppercase tracking-wider text-primary hover:opacity-80 transition-opacity">
+                            Compare All Service Tiers <ChevronRight className="ml-1 w-3 h-3" />
+                          </Link>
+                        </div>
+                      </div>
+                    </div>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+
+                {/* Packages Link -> Points to /wedding-band */}
+                <NavigationMenuItem>
+                  <Link href="/wedding-band" legacyBehavior passHref>
+                    <NavigationMenuLink className={`${navigationMenuTriggerStyle()} bg-transparent hover:bg-black/5 focus:bg-transparent ${shouldShowSolid ? "text-foreground" : "text-white hover:text-white/80 focus:text-white"
+                      }`}>
+                      Packages
+                    </NavigationMenuLink>
+                  </Link>
+                </NavigationMenuItem>
+
+                {/* Videos Link */}
+                <NavigationMenuItem>
+                  <Link href="/videos" legacyBehavior passHref>
+                    <NavigationMenuLink className={`${navigationMenuTriggerStyle()} bg-transparent hover:bg-black/5 focus:bg-transparent ${shouldShowSolid ? "text-foreground" : "text-white hover:text-white/80 focus:text-white"
+                      }`}>
+                      Videos
+                    </NavigationMenuLink>
+                  </Link>
+                </NavigationMenuItem>
+
+                {/* Photo Gallery Link */}
+                <NavigationMenuItem>
+                  <Link href="/gallery" legacyBehavior passHref>
+                    <NavigationMenuLink className={`${navigationMenuTriggerStyle()} bg-transparent hover:bg-black/5 focus:bg-transparent ${shouldShowSolid ? "text-foreground" : "text-white hover:text-white/80 focus:text-white"
+                      }`}>
+                      Photo Gallery
+                    </NavigationMenuLink>
+                  </Link>
+                </NavigationMenuItem>
+              </NavigationMenuList>
+            </NavigationMenu>
+          </div>
+
+          {/* Right Section: CTA Contact Button */}
+          <div className="hidden md:flex items-center flex-shrink-0">
             <Button asChild className="font-medium tracking-wide text-xs lg:text-sm">
               <Link href="/contact">Contact Us</Link>
             </Button>
@@ -130,11 +209,30 @@ export function Header() {
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu Expanded Area */}
       {isMobileMenuOpen && (
-        <div className="md:hidden bg-background border-t border-border">
-          <nav className="flex flex-col px-4 py-4 gap-4">
-            <div className="flex items-center gap-4 py-2 border-b border-border">
+        <div className="md:hidden bg-background border-t border-border overflow-y-auto max-h-[calc(100vh-6rem)]">
+          <nav className="flex flex-col px-6 py-8 gap-8">
+            {/* Services Links Mobile */}
+            <div className="space-y-6">
+              <p className="text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">Services</p>
+              <div className="flex flex-col gap-4 pl-4 border-l border-border/50">
+                <Link href="/wedding-dj" onClick={() => setIsMobileMenuOpen(false)} className="text-lg font-serif">Wedding DJ & Sax</Link>
+                <Link href="/live-dj" onClick={() => setIsMobileMenuOpen(false)} className="text-lg font-serif">Live DJ Service</Link>
+                <Link href="/events-band" onClick={() => setIsMobileMenuOpen(false)} className="text-lg font-serif">Events & Party Band</Link>
+                <Link href="/wedding-planning" onClick={() => setIsMobileMenuOpen(false)} className="text-lg font-serif">Planning & Coordination</Link>
+                <Link href="/dance-band-event-dj" onClick={() => setIsMobileMenuOpen(false)} className="text-sm font-medium uppercase tracking-wider text-accent pt-2">Compare All Service Tiers</Link>
+              </div>
+            </div>
+
+            {/* Other Links Mobile */}
+            <div className="space-y-4 pt-6 border-t border-border/50">
+              <Link href="/wedding-band" onClick={() => setIsMobileMenuOpen(false)} className="block text-xl font-serif">Packages</Link>
+              <Link href="/videos" onClick={() => setIsMobileMenuOpen(false)} className="block text-xl font-serif">Videos</Link>
+              <Link href="/gallery" onClick={() => setIsMobileMenuOpen(false)} className="block text-xl font-serif">Photo Gallery</Link>
+            </div>
+
+            <div className="flex items-center gap-4 py-4 mt-4 border-t border-border/50">
               {socialLinks.map((social) => (
                 <Link
                   key={social.label}
@@ -151,11 +249,11 @@ export function Header() {
             </div>
             <div className="flex items-center gap-2 pt-2">
               <Phone className="h-4 w-4" />
-              <a href="tel:8055703117" className="text-sm font-medium">
+              <a href="tel:8055703117" className="text-sm font-medium hover:text-accent transition-colors">
                 (805) 570-3117
               </a>
             </div>
-            <Button asChild className="mt-2 w-full">
+            <Button asChild className="w-full h-12 mt-2 font-bold tracking-widest text-xs">
               <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)}>Contact Us</Link>
             </Button>
           </nav>
