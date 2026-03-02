@@ -1,5 +1,45 @@
 export const allVideos = [
   {
+    "title": "1. September",
+    "id": "11JP7zg5VlC_u4jxLFfsrmW13-y0PLxx7",
+    "orientation": "Portrait"
+  },
+  {
+    "title": "1. Sweet Caroline",
+    "id": "1HoLiZZHwkWgtL8IseYvYZCxHlbW_6vNv",
+    "orientation": "Portrait"
+  },
+  {
+    "title": "2. Journey",
+    "id": "1PRwMDzhIO4_PyMmnbesMshv45pZjwLYp",
+    "orientation": "Portrait"
+  },
+  {
+    "title": "3. Lady Marmalade",
+    "id": "1VwIFTvhBkyu6aP3UOe9wYflMsrOwx2Qd",
+    "orientation": "Portrait"
+  },
+  {
+    "title": "4. Give It Too Me",
+    "id": "1upgjfx5tGA4KpHumf_G7U0eJ6lMUER20",
+    "orientation": "Portrait"
+  },
+  {
+    "title": "4. Jungle Boogie",
+    "id": "1wRhI6SrD_yQoT4xpvlEbb-xzE1qujPDg",
+    "orientation": "Portrait"
+  },
+  {
+    "title": "4. Sir Duke",
+    "id": "1S8rf4y34MS0kMDDyps85O8ri3P4Etg8K",
+    "orientation": "Portrait"
+  },
+  {
+    "title": "5. I Wish",
+    "id": "1iU_vyCq_oiBkKJ4_D7koSg5vLmr3iZXY",
+    "orientation": "Portrait"
+  },
+  {
     "title": "Signed Sealed Delivered",
     "id": "12FKK3ImL0TBgeTMmmT2w2DF7K9E9pYti",
     "orientation": "Portrait"
@@ -185,48 +225,13 @@ export const allVideos = [
     "orientation": "Portrait"
   },
   {
-    "title": "5. Lady Marmalade",
-    "id": "1VwIFTvhBkyu6aP3UOe9wYflMsrOwx2Qd",
-    "orientation": "Portrait"
-  },
-  {
-    "title": "7. I Wish",
-    "id": "1iU_vyCq_oiBkKJ4_D7koSg5vLmr3iZXY",
-    "orientation": "Portrait"
-  },
-  {
     "title": "6. Unwritten",
     "id": "1BzWYvftFsq3ceOCHynYbJV5PquhR5-DC",
     "orientation": "Portrait"
   },
   {
-    "title": "5. Give It Too Me",
-    "id": "1upgjfx5tGA4KpHumf_G7U0eJ6lMUER20",
-    "orientation": "Portrait"
-  },
-  {
-    "title": "4. Sir Duke",
-    "id": "1S8rf4y34MS0kMDDyps85O8ri3P4Etg8K",
-    "orientation": "Portrait"
-  },
-  {
-    "title": "3. Jungle Boogie",
-    "id": "1wRhI6SrD_yQoT4xpvlEbb-xzE1qujPDg",
-    "orientation": "Landscape"
-  },
-  {
     "title": "Signed Sealed Delivered",
     "id": "1LNim-oL4wwrF-tMuxyUJiWJD_ch0ZBBl",
-    "orientation": "Portrait"
-  },
-  {
-    "title": "2. Journey",
-    "id": "1PRwMDzhIO4_PyMmnbesMshv45pZjwLYp",
-    "orientation": "Landscape"
-  },
-  {
-    "title": "1. Sweet Caroline",
-    "id": "1HoLiZZHwkWgtL8IseYvYZCxHlbW_6vNv",
     "orientation": "Portrait"
   },
   {
@@ -258,11 +263,6 @@ export const allVideos = [
     "title": "D Trumpet VS Sax",
     "id": "1f5W8j26uTzzEymi7Vqr51GY2K6tcE3nj",
     "orientation": "Portrait"
-  },
-  {
-    "title": "B September",
-    "id": "18lH8U44G-2aOF7g5O--0Z0P1Svhu960V",
-    "orientation": "Landscape"
   },
   {
     "title": "Don't Stop Believing (Wedding)",
