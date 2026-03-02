@@ -98,7 +98,7 @@ export default function WeddingBandPage() {
                             Award Winning Entertainment
                         </p>
                         <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl mb-6 text-balance max-w-4xl mx-auto">
-                            Curated Packages for Your Perfect Day
+                            Wedding Band Packages in Santa Barbara, CA
                         </h1>
                         <p className="text-lg md:text-xl text-primary-foreground/80 max-w-2xl mx-auto font-light leading-relaxed">
                             From intimate ceremonies to unforgettable high-energy receptions.

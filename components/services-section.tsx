@@ -8,7 +8,7 @@ const services = [
     subtitle: "6-9 Piece Dance Band",
     description:
       "High-energy, polished performances that keep guests on the dance floor all night. From Motown to Top 40, funk to pop, we deliver an unforgettable party atmosphere.",
-    image: "/images/IMG_9247.webp",
+    image: "/band-images/IMG_9355.webp",
   },
   {
     title: "Jazz Quartet",
@@ -56,7 +56,7 @@ export function ServicesSection() {
                   src={service.image || "/placeholder.svg"}
                   alt={service.title}
                   fill
-                  className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                  className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
                 />
               </div>
               <div className="p-8">

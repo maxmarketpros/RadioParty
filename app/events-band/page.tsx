@@ -37,7 +37,7 @@ export default function EventsBandPage() {
                             <Sparkles className="w-4 h-4" />
                         </p>
                         <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl mb-8 text-balance mx-auto leading-tight">
-                            The Premier Events <br className="hidden md:block" /> & Corporate Party Band
+                            Events Band in Santa Barbara, CA
                         </h1>
                         <p className="text-lg md:text-xl text-primary-foreground/80 max-w-2xl mx-auto font-light leading-relaxed mb-10">
                             From high-stakes corporate galas to exclusive private celebrations, Radio Prophets delivers an explosive, stadium-level concert experience designed specifically to pack the dance floor and elevate your event.

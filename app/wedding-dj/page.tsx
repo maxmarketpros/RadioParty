@@ -37,7 +37,7 @@ export default function WeddingDjPage() {
                             <Sparkles className="w-4 h-4" />
                         </p>
                         <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl mb-8 text-balance max-w-4xl mx-auto leading-tight">
-                            The Ultimate Wedding DJ <br className="hidden md:block" /> & Saxophone Experience
+                            Wedding DJ and Sax Duo in Santa Barbara, CA
                         </h1>
                         <p className="text-lg md:text-xl text-primary-foreground/80 max-w-2xl mx-auto font-light leading-relaxed mb-10">
                             Fusing the boundless energy and limitless repertoire of a world-class club DJ with the electrifying presence of a live, roaming saxophonist. It’s not just a playlist; it’s an interactive performance tailored exactly to your vibe.

@@ -37,7 +37,7 @@ export default function LiveDjPage() {
                             <Sparkles className="w-4 h-4" />
                         </p>
                         <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl mb-8 text-balance mx-auto leading-tight">
-                            The Ultimate <br className="hidden md:block" /> Soundtrack to Your Night
+                            Live DJ Service in Santa Barbara, CA
                         </h1>
                         <p className="text-lg md:text-xl text-primary-foreground/80 max-w-2xl mx-auto font-light leading-relaxed mb-10">
                             A legendary reception requires more than just a playlist. Our expert wedding DJs provide flawless, high-energy mixing tailored entirely to your personal taste, keeping the dance floor packed from start to finish.

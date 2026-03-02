@@ -37,7 +37,7 @@ export default function DanceBandEventDjPage() {
                             <Sparkles className="w-4 h-4" />
                         </p>
                         <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl mb-8 text-balance mx-auto leading-tight">
-                            Dance Band, Event DJ, <br className="hidden md:block" /> & DJ + Sax Duo
+                            Dance Band in Santa Barbara, CA
                         </h1>
                         <p className="text-lg md:text-xl text-primary-foreground/80 max-w-2xl mx-auto font-light leading-relaxed mb-10">
                             Whether you envision a soaring live concert from a 10-piece band, the flawless mixing of a world-class DJ, or our signature DJ and Saxophone hybrid, we engineer the perfect musical experience for your event.
