@@ -105,8 +105,7 @@ export default function VideosPage() {
                     </button>
 
                     <div
-                        className="w-full max-w-[400px] bg-black rounded-lg overflow-hidden shadow-2xl relative"
-                        style={{ paddingBottom: 'calc(177.77% + 60px)' }}
+                        className="w-full h-full max-w-[400px] max-h-[85vh] bg-black rounded-lg overflow-hidden shadow-2xl relative"
                         onClick={(e) => e.stopPropagation()}
                     >
                         <iframe
