@@ -105,13 +105,17 @@ export default function VideosPage() {
                     </button>
 
                     <div
-                        className="w-full h-full max-w-[400px] max-h-[85vh] bg-black rounded-lg overflow-hidden shadow-2xl relative"
+                        className="bg-black rounded-lg overflow-hidden shadow-2xl"
+                        style={{
+                            width: 'min(calc(85vh * 9 / 16), calc(100vw - 2rem))',
+                            height: 'min(85vh, calc((100vw - 2rem) * 16 / 9))',
+                        }}
                         onClick={(e) => e.stopPropagation()}
                     >
                         <iframe
                             src={`https://drive.google.com/file/d/${playingPortrait}/preview`}
                             title="Video Player"
-                            className="absolute inset-0 w-full h-full"
+                            className="w-full h-full border-0"
                             allow="autoplay; fullscreen; picture-in-picture"
                             allowFullScreen
                         />
