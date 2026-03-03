@@ -60,8 +60,9 @@ export function VideoSection() {
             >
               <video
                 src={video.src}
+                poster={video.poster}
                 className="w-full h-full object-cover opacity-70 transition-all duration-700 group-hover:opacity-100 group-hover:scale-105"
-                preload="metadata"
+                preload="none"
                 loop
                 muted
                 playsInline
