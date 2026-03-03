@@ -66,10 +66,10 @@ export function HeroSection() {
       {/* Content */}
       <div className="relative z-10 flex h-full flex-col items-center justify-center px-4 pt-16 lg:pt-0 text-center text-white">
         <p className="mb-4 text-sm font-medium uppercase tracking-[0.3em] text-white/90">
-          Santa Barbara&apos;s Premier Wedding Band
+          Unforgettable Music for Memorable Moments
         </p>
         <h1 className="mb-6 max-w-4xl font-serif text-4xl font-normal leading-tight sm:text-5xl md:text-6xl lg:text-7xl text-balance">
-          Unforgettable Music for Your Most Memorable Moments
+          Award Winning Wedding Band in Santa Barbara, CA
         </h1>
         <p className="mb-8 max-w-2xl text-lg text-white/90 md:text-xl leading-relaxed">
           Award-winning live entertainment for weddings, corporate events, and luxury celebrations

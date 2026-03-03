@@ -37,7 +37,7 @@ export default function WeddingPlanningPage() {
                             <Sparkles className="w-4 h-4" />
                         </p>
                         <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl mb-8 text-balance mx-auto leading-tight">
-                            Wedding Planning in Santa Barbara, CA
+                            Wedding Planner and Day of Coordinator in Santa Barabara, CA
                         </h1>
                         <p className="text-lg md:text-xl text-primary-foreground/80 max-w-2xl mx-auto font-light leading-relaxed mb-10">
                             A truly luxurious wedding feels effortless because every detail is meticulously managed behind the scenes. From visionary design to flawless day-of execution, we bring your dream celebration to life.
