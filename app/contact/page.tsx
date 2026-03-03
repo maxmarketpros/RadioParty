@@ -17,7 +17,7 @@ export default function ContactPage() {
         setStatus("submitting");
 
         try {
-            const response = await fetch("/", {
+            const response = await fetch("/contact-form.html", {
                 method: "POST",
                 headers: { "Content-Type": "application/x-www-form-urlencoded" },
                 // @ts-ignore - FormData to URLSearchParams is broadly supported but TypeScript might complain depending on lib
@@ -190,16 +190,50 @@ export default function ContactPage() {
                                             />
                                         </div>
                                     </div>
+
+                                    <div className="grid md:grid-cols-2 gap-6">
+                                        <div className="space-y-2">
+                                            <label htmlFor="phone" className="text-sm font-medium tracking-wide uppercase opacity-70">
+                                                Phone
+                                            </label>
+                                            <input
+                                                id="phone"
+                                                name="phone"
+                                                type="tel"
+                                                className="w-full bg-background border-border border px-4 py-3 focus:outline-none focus:ring-1 focus:ring-primary transition-all"
+                                                placeholder="(555) 123-4567"
+                                            />
+                                        </div>
+                                        <div className="space-y-2">
+                                            <label htmlFor="date" className="text-sm font-medium tracking-wide uppercase opacity-70">
+                                                Event Date
+                                            </label>
+                                            <input
+                                                id="date"
+                                                name="date"
+                                                type="date"
+                                                required
+                                                className="w-full bg-background border-border border px-4 py-3 focus:outline-none focus:ring-1 focus:ring-primary transition-all"
+                                            />
+                                        </div>
+                                    </div>
+
                                     <div className="space-y-2">
-                                        <label htmlFor="date" className="text-sm font-medium tracking-wide uppercase opacity-70">
-                                            Event Date
+                                        <label htmlFor="eventType" className="text-sm font-medium tracking-wide uppercase opacity-70">
+                                            Event Type
                                         </label>
-                                        <input
-                                            id="date"
-                                            name="date"
-                                            type="date"
-                                            className="w-full bg-background border-border border px-4 py-3 focus:outline-none focus:ring-1 focus:ring-primary transition-all"
-                                        />
+                                        <select
+                                            id="eventType"
+                                            name="eventType"
+                                            required
+                                            className="w-full bg-background border-border border px-4 py-3 focus:outline-none focus:ring-1 focus:ring-primary transition-all text-foreground"
+                                        >
+                                            <option value="">Select event type</option>
+                                            <option value="Wedding">Wedding</option>
+                                            <option value="Corporate Event">Corporate Event</option>
+                                            <option value="Private Party">Private Party</option>
+                                            <option value="Other">Other</option>
+                                        </select>
                                     </div>
                                     <div className="space-y-2">
                                         <label htmlFor="message" className="text-sm font-medium tracking-wide uppercase opacity-70">
