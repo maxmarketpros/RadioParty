@@ -1,11 +1,40 @@
 "use client";
 
+import { useState } from "react";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { Button } from "@/components/ui/button";
-import { Phone, Mail, Instagram, Facebook, Youtube, Music } from "lucide-react";
+import { Phone, Mail, Instagram, Facebook, Youtube, Music, Loader2, CheckCircle2 } from "lucide-react";
 
 export default function ContactPage() {
+    const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        const form = e.currentTarget;
+        const formData = new FormData(form);
+
+        setStatus("submitting");
+
+        try {
+            const response = await fetch("/", {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                // @ts-ignore - FormData to URLSearchParams is broadly supported but TypeScript might complain depending on lib
+                body: new URLSearchParams(formData as any).toString(),
+            });
+
+            if (response.ok) {
+                setStatus("success");
+                form.reset();
+            } else {
+                setStatus("error");
+            }
+        } catch (error) {
+            setStatus("error");
+        }
+    };
+
     return (
         <>
             <Header />
@@ -101,57 +130,111 @@ export default function ContactPage() {
                             </div>
                         </div>
 
-                        {/* Contact Form */}
                         <div className="bg-card p-8 md:p-12 shadow-sm rounded-sm border border-border/50">
-                            <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
-                                <div className="grid md:grid-cols-2 gap-6">
+                            {status === "success" ? (
+                                <div className="text-center py-12 space-y-4">
+                                    <div className="inline-flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 mb-4">
+                                        <CheckCircle2 className="h-8 w-8 text-primary" />
+                                    </div>
+                                    <h3 className="text-2xl font-serif text-balance">Thank you for reaching out!</h3>
+                                    <p className="text-muted-foreground">
+                                        We&apos;ve received your message and will get back to you as soon as possible.
+                                    </p>
+                                    <Button
+                                        variant="outline"
+                                        className="mt-6"
+                                        onClick={() => setStatus("idle")}
+                                    >
+                                        Send Another Message
+                                    </Button>
+                                </div>
+                            ) : (
+                                <form
+                                    className="space-y-6"
+                                    name="contact"
+                                    method="POST"
+                                    data-netlify="true"
+                                    netlify-honeypot="bot-field"
+                                    onSubmit={handleSubmit}
+                                >
+                                    <input type="hidden" name="form-name" value="contact" />
+                                    <div className="hidden">
+                                        <label>
+                                            Don&apos;t fill this out if you&apos;re human: <input name="bot-field" tabIndex={-1} />
+                                        </label>
+                                    </div>
+                                    <div className="grid md:grid-cols-2 gap-6">
+                                        <div className="space-y-2">
+                                            <label htmlFor="name" className="text-sm font-medium tracking-wide uppercase opacity-70">
+                                                Full Name
+                                            </label>
+                                            <input
+                                                id="name"
+                                                name="name"
+                                                required
+                                                className="w-full bg-background border-border border px-4 py-3 focus:outline-none focus:ring-1 focus:ring-primary transition-all"
+                                                placeholder="John Smith"
+                                            />
+                                        </div>
+                                        <div className="space-y-2">
+                                            <label htmlFor="email" className="text-sm font-medium tracking-wide uppercase opacity-70">
+                                                Email Address
+                                            </label>
+                                            <input
+                                                id="email"
+                                                name="email"
+                                                type="email"
+                                                required
+                                                className="w-full bg-background border-border border px-4 py-3 focus:outline-none focus:ring-1 focus:ring-primary transition-all"
+                                                placeholder="john@example.com"
+                                            />
+                                        </div>
+                                    </div>
                                     <div className="space-y-2">
-                                        <label htmlFor="name" className="text-sm font-medium tracking-wide uppercase opacity-70">
-                                            Full Name
+                                        <label htmlFor="date" className="text-sm font-medium tracking-wide uppercase opacity-70">
+                                            Event Date
                                         </label>
                                         <input
-                                            id="name"
+                                            id="date"
+                                            name="date"
+                                            type="date"
                                             className="w-full bg-background border-border border px-4 py-3 focus:outline-none focus:ring-1 focus:ring-primary transition-all"
-                                            placeholder="John Smith"
                                         />
                                     </div>
                                     <div className="space-y-2">
-                                        <label htmlFor="email" className="text-sm font-medium tracking-wide uppercase opacity-70">
-                                            Email Address
+                                        <label htmlFor="message" className="text-sm font-medium tracking-wide uppercase opacity-70">
+                                            Message
                                         </label>
-                                        <input
-                                            id="email"
-                                            type="email"
+                                        <textarea
+                                            id="message"
+                                            name="message"
+                                            rows={5}
+                                            required
                                             className="w-full bg-background border-border border px-4 py-3 focus:outline-none focus:ring-1 focus:ring-primary transition-all"
-                                            placeholder="john@example.com"
+                                            placeholder="Tell us about your event..."
                                         />
                                     </div>
-                                </div>
-                                <div className="space-y-2">
-                                    <label htmlFor="date" className="text-sm font-medium tracking-wide uppercase opacity-70">
-                                        Event Date
-                                    </label>
-                                    <input
-                                        id="date"
-                                        type="date"
-                                        className="w-full bg-background border-border border px-4 py-3 focus:outline-none focus:ring-1 focus:ring-primary transition-all"
-                                    />
-                                </div>
-                                <div className="space-y-2">
-                                    <label htmlFor="message" className="text-sm font-medium tracking-wide uppercase opacity-70">
-                                        Message
-                                    </label>
-                                    <textarea
-                                        id="message"
-                                        rows={5}
-                                        className="w-full bg-background border-border border px-4 py-3 focus:outline-none focus:ring-1 focus:ring-primary transition-all"
-                                        placeholder="Tell us about your event..."
-                                    />
-                                </div>
-                                <Button className="w-full py-6 text-sm font-semibold uppercase tracking-widest">
-                                    Send Message
-                                </Button>
-                            </form>
+                                    {status === "error" && (
+                                        <p className="text-sm text-destructive">
+                                            Something went wrong. Please try again or contact us directly.
+                                        </p>
+                                    )}
+                                    <Button
+                                        type="submit"
+                                        disabled={status === "submitting"}
+                                        className="w-full py-6 text-sm font-semibold uppercase tracking-widest disabled:opacity-70"
+                                    >
+                                        {status === "submitting" ? (
+                                            <>
+                                                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                                                Sending...
+                                            </>
+                                        ) : (
+                                            "Send Message"
+                                        )}
+                                    </Button>
+                                </form>
+                            )}
                         </div>
                     </div>
                 </div>

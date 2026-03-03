@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact Form (Netlify Parser Fallback)</title>
+</head>
+<body>
+    <!-- 
+    This is a static HTML form that Netlify's build bots will detect and use 
+    to register the "contact" form on their platform. The actual form on the 
+    /contact page submits data to this registered endpoint via AJAX.
+    -->
+    <form name="contact" data-netlify="true" netlify-honeypot="bot-field" hidden>
+        <input name="bot-field" />
+        <input type="text" name="name" />
+        <input type="email" name="email" />
+        <input type="date" name="date" />
+        <textarea name="message"></textarea>
+    </form>
+</body>
+</html>
