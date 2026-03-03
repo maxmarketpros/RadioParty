@@ -8,7 +8,7 @@ const services = [
     subtitle: "6-9 Piece Dance Band",
     description:
       "High-energy, polished performances that keep guests on the dance floor all night. From Motown to Top 40, funk to pop, we deliver an unforgettable party atmosphere.",
-    image: "/band-images/IMG_9355.webp",
+    image: "/NEW%20HOME%20PAGE%20IMAGES/IMG_0070.jpeg",
   },
   {
     title: "Jazz Quartet",
@@ -29,7 +29,7 @@ const services = [
     subtitle: "Intimate Performances",
     description:
       "Perfect for intimate gatherings and special moments. Our saxophone performances add elegance and emotion to ceremonies, dinners, and cocktail hours.",
-    image: "/band-images/IMG_9357.webp",
+    image: "/NEW%20HOME%20PAGE%20IMAGES/0.jpg",
   },
 ];
 

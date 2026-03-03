@@ -72,7 +72,7 @@ export function HeroSection() {
           Award Winning Wedding Band in Santa Barbara, CA
         </h1>
         <p className="mb-8 max-w-2xl text-lg text-white/90 md:text-xl leading-relaxed">
-          Award-winning live entertainment for weddings, corporate events, and luxury celebrations
+          World class entertainment for Weddings, Corporate Events, and Luxury Celebrations
           across California.
         </p>
         <div className="flex flex-col sm:flex-row gap-4">
