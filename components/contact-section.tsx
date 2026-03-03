@@ -8,32 +8,34 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Phone, Mail, MapPin, Calendar } from "lucide-react";
+import { Phone, Mail, MapPin, Calendar, Loader2, CheckCircle2 } from "lucide-react";
 
 export function ContactSection() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    eventDate: "",
-    eventType: "",
-    message: "",
-  });
+  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Compose mailto link with form data
-    const subject = `Event Inquiry: ${formData.eventType} on ${formData.eventDate}`;
-    const body = `Name: ${formData.name}
-Email: ${formData.email}
-Phone: ${formData.phone}
-Event Date: ${formData.eventDate}
-Event Type: ${formData.eventType}
+    const form = e.currentTarget;
+    const formData = new FormData(form);
 
-Message:
-${formData.message}`;
+    setStatus("submitting");
 
-    window.location.href = `mailto:radioprophetsevents@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    try {
+      const response = await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        // @ts-ignore
+        body: new URLSearchParams(formData as any).toString(),
+      });
+
+      if (response.ok) {
+        setStatus("success");
+      } else {
+        setStatus("error");
+      }
+    } catch (error) {
+      setStatus("error");
+    }
   };
 
   return (
@@ -134,106 +136,152 @@ ${formData.message}`;
           </div>
 
           {/* Contact Form */}
-          <div className="bg-card p-8 md:p-10">
-            <h3 className="font-serif text-2xl mb-6">Request a Quote</h3>
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="grid sm:grid-cols-2 gap-4">
-                <div>
-                  <label htmlFor="name" className="text-sm font-medium block mb-2">
-                    Your Name
-                  </label>
-                  <Input
-                    id="name"
-                    type="text"
-                    placeholder="John & Jane Doe"
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    required
-                    className="bg-background"
-                  />
+          <div className="bg-card p-8 md:p-10 shadow-sm border border-border/50 rounded-sm">
+            {status === "success" ? (
+              <div className="text-center py-12 space-y-4">
+                <div className="inline-flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 mb-4">
+                  <CheckCircle2 className="h-8 w-8 text-primary" />
                 </div>
-                <div>
-                  <label htmlFor="email" className="text-sm font-medium block mb-2">
-                    Email
-                  </label>
-                  <Input
-                    id="email"
-                    type="email"
-                    placeholder="you@email.com"
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    required
-                    className="bg-background"
-                  />
-                </div>
-              </div>
-
-              <div className="grid sm:grid-cols-2 gap-4">
-                <div>
-                  <label htmlFor="phone" className="text-sm font-medium block mb-2">
-                    Phone
-                  </label>
-                  <Input
-                    id="phone"
-                    type="tel"
-                    placeholder="(555) 123-4567"
-                    value={formData.phone}
-                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className="bg-background"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="eventDate" className="text-sm font-medium block mb-2">
-                    Event Date
-                  </label>
-                  <Input
-                    id="eventDate"
-                    type="date"
-                    value={formData.eventDate}
-                    onChange={(e) => setFormData({ ...formData, eventDate: e.target.value })}
-                    required
-                    className="bg-background"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label htmlFor="eventType" className="text-sm font-medium block mb-2">
-                  Event Type
-                </label>
-                <select
-                  id="eventType"
-                  value={formData.eventType}
-                  onChange={(e) => setFormData({ ...formData, eventType: e.target.value })}
-                  required
-                  className="w-full h-10 px-3 py-2 bg-background border border-input text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-ring"
+                <h3 className="text-2xl font-serif text-balance">Thank you for reaching out!</h3>
+                <p className="text-muted-foreground">
+                  We&apos;ve received your inquiry and will get back to you as soon as possible to discuss your event.
+                </p>
+                <Button
+                  variant="outline"
+                  className="mt-6"
+                  onClick={() => setStatus("idle")}
                 >
-                  <option value="">Select event type</option>
-                  <option value="Wedding">Wedding</option>
-                  <option value="Corporate Event">Corporate Event</option>
-                  <option value="Private Party">Private Party</option>
-                  <option value="Other">Other</option>
-                </select>
+                  Send Another Inquiry
+                </Button>
               </div>
+            ) : (
+              <>
+                <h3 className="font-serif text-2xl mb-6">Request a Quote</h3>
+                <form
+                  onSubmit={handleSubmit}
+                  className="space-y-4"
+                  name="contact"
+                  method="POST"
+                  data-netlify="true"
+                  netlify-honeypot="bot-field"
+                >
+                  <input type="hidden" name="form-name" value="contact" />
+                  <div className="hidden">
+                    <label>
+                      Don&apos;t fill this out if you&apos;re human: <input name="bot-field" tabIndex={-1} />
+                    </label>
+                  </div>
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    <div>
+                      <label htmlFor="name" className="text-sm font-medium block mb-2">
+                        Your Name
+                      </label>
+                      <Input
+                        id="name"
+                        name="name"
+                        type="text"
+                        placeholder="John & Jane Doe"
+                        required
+                        className="bg-background focus-visible:ring-1 focus-visible:ring-primary rounded-none"
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="email" className="text-sm font-medium block mb-2">
+                        Email
+                      </label>
+                      <Input
+                        id="email"
+                        name="email"
+                        type="email"
+                        placeholder="you@email.com"
+                        required
+                        className="bg-background focus-visible:ring-1 focus-visible:ring-primary rounded-none"
+                      />
+                    </div>
+                  </div>
 
-              <div>
-                <label htmlFor="message" className="text-sm font-medium block mb-2">
-                  Tell Us About Your Event
-                </label>
-                <Textarea
-                  id="message"
-                  placeholder="Share details about your event, venue, and any special requests..."
-                  rows={4}
-                  value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className="bg-background"
-                />
-              </div>
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    <div>
+                      <label htmlFor="phone" className="text-sm font-medium block mb-2">
+                        Phone
+                      </label>
+                      <Input
+                        id="phone"
+                        name="phone"
+                        type="tel"
+                        placeholder="(555) 123-4567"
+                        className="bg-background focus-visible:ring-1 focus-visible:ring-primary rounded-none"
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="eventDate" className="text-sm font-medium block mb-2">
+                        Event Date
+                      </label>
+                      <Input
+                        id="eventDate"
+                        name="date"
+                        type="date"
+                        required
+                        className="bg-background focus-visible:ring-1 focus-visible:ring-primary rounded-none"
+                      />
+                    </div>
+                  </div>
 
-              <Button type="submit" size="lg" className="w-full font-medium tracking-wide">
-                Send Inquiry
-              </Button>
-            </form>
+                  <div>
+                    <label htmlFor="eventType" className="text-sm font-medium block mb-2">
+                      Event Type
+                    </label>
+                    <select
+                      id="eventType"
+                      name="eventType"
+                      required
+                      className="w-full h-10 px-3 py-2 bg-background border border-input text-foreground text-sm focus:outline-none focus:ring-1 focus:ring-primary"
+                    >
+                      <option value="">Select event type</option>
+                      <option value="Wedding">Wedding</option>
+                      <option value="Corporate Event">Corporate Event</option>
+                      <option value="Private Party">Private Party</option>
+                      <option value="Other">Other</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label htmlFor="message" className="text-sm font-medium block mb-2">
+                      Tell Us About Your Event
+                    </label>
+                    <Textarea
+                      id="message"
+                      name="message"
+                      placeholder="Share details about your event, venue, and any special requests..."
+                      rows={4}
+                      className="bg-background focus-visible:ring-1 focus-visible:ring-primary rounded-none"
+                    />
+                  </div>
+
+                  {status === "error" && (
+                    <p className="text-sm text-destructive">
+                      Something went wrong. Please try again or contact us directly at our email or phone above.
+                    </p>
+                  )}
+
+                  <Button
+                    type="submit"
+                    size="lg"
+                    disabled={status === "submitting"}
+                    className="w-full font-medium tracking-wide uppercase disabled:opacity-70"
+                  >
+                    {status === "submitting" ? (
+                      <>
+                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                        Sending...
+                      </>
+                    ) : (
+                      "Send Inquiry"
+                    )}
+                  </Button>
+                </form>
+              </>
+            )}
           </div>
         </div>
       </div>
