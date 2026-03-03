@@ -18,12 +18,12 @@ export default function HomePage() {
       <main>
         <HeroSection />
         <AboutSection />
+        <VideoSection />
         <ServicesSection />
         <PackagesSection />
         <PublicationsSection />
         <TestimonialsSection />
         <GallerySection />
-        <VideoSection />
         <SpotifySection />
         <ContactSection />
       </main>
